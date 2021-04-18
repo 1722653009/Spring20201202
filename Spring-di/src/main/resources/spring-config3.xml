@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--第一种,通过有参构造函数的下标值-->
+    <!--<bean id="user" class="com.zlh.pojo.User">
+        <constructor-arg index="0" value="张三"></constructor-arg>
+        <constructor-arg index="1" value="18"></constructor-arg>
+    </bean>-->
+
+    <bean id="user2" class="com.zlh.pojo.User" name="ww">
+        <constructor-arg name="name" value="王五"/>
+        <constructor-arg name="age" value="18"/>
+    </bean>
+
+    <!--通过数据类型创建,不建议使用-->
+    <!--<bean id="user2" class="com.zlh.pojo.User">
+        <constructor-arg type="java.lang.String" value="王五"/>
+        <constructor-arg type="int" value="18"/>
+    </bean>-->
+
+    <!--alias取别名-->
+    <!--<alias name="user" alias="user22"></alias>-->
+</beans>

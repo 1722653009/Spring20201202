@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--一个bean就是一个new对象的过程
+        id:只是为当前取个名称
+        class:需要实例对象的完整类名
+        bean:就是去给工厂提交配置订单
+    -->
+    <bean id="userDao" class="com.zlh.dao.UserDao">
+        <property name="name" value="张三"/>
+        <property name="age" value="18"/>
+    </bean>
+
+    <!--实例工厂-->
+    <bean id="factory" class="com.zlh.dao.FactoryBean"></bean>
+
+    <!--通过工厂得到对象-->
+    <bean id="userDao2" factory-bean="factory" factory-method="createUserDao"></bean>
+
+    <!--使用静态方法实例对象-->
+    <bean id="ud" class="com.zlh.dao.StaticFactoryBean" factory-method="createUserDao"></bean>
+</beans>

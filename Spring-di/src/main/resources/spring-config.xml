@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--第一种,通过有参构造函数的下标值-->
+    <!--<bean id="user" class="com.zlh.pojo.User">
+        <constructor-arg index="0" value="张三"></constructor-arg>
+        <constructor-arg index="1" value="18"></constructor-arg>
+    </bean>-->
+
+    <!--通过数据类型创建,不建议使用-->
+    <!--<bean id="user2" class="com.zlh.pojo.User">
+        <constructor-arg type="java.lang.String" value="王五"/>
+        <constructor-arg type="int" value="18"/>
+    </bean>-->
+
+    <!--request:在当前request可以使用对象 session application websocket-->
+    <bean id="teacher2" class="com.zlh.pojo.Teacher" p:name="张三" p:list="lol"></bean>
+    <bean id="concry" class="com.zlh.pojo.Concry" c:_0="李四" scope="prototype"></bean>
+
+    <!--导入其它配置文件-->
+    <import resource="spring-config2.xml"/>
+    <import resource="spring-config3.xml"/>
+
+    <bean id="country" class="com.zlh.pojo.Concry">
+        <property name="name">
+            <value>中国</value>
+        </property>
+    </bean>
+
+    <bean id="teacher" class="com.zlh.pojo.Teacher">
+        <!--普通属性注入-->
+        <property name="name" value="张三"></property>
+        <!--指定哪个引用对象-->
+        <property name="country" ref="country"></property>
+
+        <!--注入数组-->
+        <!--<property name="avis" value="ss,ws,sx,as"/>-->
+        <property name="avis">
+            <array>
+                <value>跑步</value>
+                <value>听歌</value>
+                <value>上网</value>
+            </array>
+        </property>
+
+        <!--list-->
+        <!--<property name="list" value="lol,dnf,cs,cf"/>-->
+        <property name="list">
+            <list>
+                <value>lol</value>
+                <value>dnf</value>
+                <value>cs</value>
+                <value>cf</value>
+            </list>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="疾风剑豪" value="面对疾风吧"/>
+                <entry key="封魔剑魂" value="双剑华斩"/>
+            </map>
+        </property>
+
+        <property name="set">
+            <set>
+                <value>lol</value>
+                <value>cf</value>
+                <value>dnf</value>
+            </set>
+        </property>
+
+        <!--null-->
+        <property name="boyfriend">
+            <null></null>
+        </property>
+
+        <!--properties-->
+        <property name="properties">
+            <props>
+                <prop key="userName">root</prop>
+                <prop key="classDriver">com.mysql.jdbc.Driver</prop>
+                <prop key="password">123456</prop>
+                <prop key="url">...</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
